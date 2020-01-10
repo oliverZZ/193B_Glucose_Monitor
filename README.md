@@ -1,6 +1,6 @@
 # 193B_Glucose_Monitor
 # Using burn data
-# Linknig Local Folder to Remote Git Repo
+# Linking Local Folder to Remote Git Repo
 Step 1: Create a folder to contain the repository
 
 Step 2: cd to the folder directory
