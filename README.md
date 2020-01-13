@@ -14,8 +14,12 @@ Step 4: git remote -v
         
 # Creating Your Own Branch
 You can create your own branch in the repo by typing: 
+
         git branch <branch_name>
+        
 Then you can jump to your branch by running:
+
         git checkout <branch_name>
+
 
 # 
