@@ -12,4 +12,10 @@ Step 3: git clone https://remote/repo/url
 Step 4: git remote -v
         use this line to verify linkage status
         
+# Creating Your Own Branch
+You can create your own branch in the repo by typing: 
+        git branch <branch_name>
+Then you can jump to your branch by running:
+        git checkout <branch_name>
+
 # 
