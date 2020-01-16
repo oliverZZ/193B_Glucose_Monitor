@@ -20,7 +20,7 @@ Step 4: Run
 Use this line to verify linkage status
         
 # Creating Your Own Branch
-You can create your own branch in the repo by typing: 
+You can create your own branch in the repo locally by typing: 
 
         git branch <branch_name>
         
@@ -28,4 +28,13 @@ Then you can jump to your branch by running:
 
         git checkout <branch_name>
 
+You can commit changes to your branch by running:
+
+        git add .
+        git commit -m "commit note"
+        
+You can push the branch back to the origin by: 
+        
+        git push origin <branch_name>
+        
 # 
