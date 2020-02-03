@@ -1,0 +1,67 @@
+# Defining functions for looping and averaging results
+from sklearn.metrics import precision_score
+from sklearn.metrics import f1_score
+from sklearn.metrics import recall_score
+
+# Repeating the training and testing process and averaging the results
+def score_model_iteration(model,train_x,train_y,test_x,test_y,n_iteration):
+    precision_0_array = []
+    precision_1_array = []
+    precision_2_array = []
+    f1_0_array = []
+    f1_1_array = []
+    f1_2_array = []
+    recall_0_array = []
+    recall_1_array = []
+    recall_2_array = []
+    
+    for i in range(0,n_iteration):
+        model.fit(train_x, train_y)
+        prediction = model.predict(test_x)
+        for idx, pred in enumerate(prediction):
+            if pred == 2:
+                prediction[idx-1] = 2
+        precision = precision_score(test_y, prediction, average = None)
+        f1 = f1_score(test_y, prediction, average = None)
+        recall = recall_score(test_y, prediction, average = None)
+        precision_0_array.append(precision[0])
+        precision_1_array.append(precision[1])
+        precision_2_array.append(precision[2])
+        f1_0_array.append(f1[0])
+        f1_1_array.append(f1[1])
+        f1_2_array.append(f1[2])
+        recall_0_array.append(recall[0])
+        recall_1_array.append(recall[1])
+        recall_2_array.append(recall[2])
+    
+    mean_precision_0 = mean(precision_0_array)
+    mean_precision_1 = mean(precision_1_array)
+    mean_precision_2 = mean(precision_2_array)
+    mean_f1_0 = mean(f1_0_array)
+    mean_f1_1 = mean(f1_1_array)
+    mean_f1_2 = mean(f1_2_array)
+    mean_recall_0 = mean(recall_0_array)
+    mean_recall_1 = mean(recall_1_array)
+    mean_recall_2 = mean(recall_2_array)
+    
+    return mean_precision_0,mean_precision_1,mean_precision_2,mean_f1_0,mean_f1_1,mean_f1_2,mean_recall_0,mean_recall_1,mean_recall_2
+
+# Printing the overall result
+def printing_result(mean_precision_0,mean_precision_1,mean_precision_2,mean_f1_0,mean_f1_1,mean_f1_2,mean_recall_0,mean_recall_1,mean_recall_2):
+    print('After running the model multiple times:')
+    print('Group 0 mean precision =', mean_precision_0)
+    print('Group 1 mean precision =', mean_precision_1)
+    print('Group 2 mean precision =', mean_precision_2)
+    print('Group 0 mean f1 =', mean_f1_0)
+    print('Group 1 mean f1 =', mean_f1_1)
+    print('Group 2 mean f1 =', mean_f1_2)
+    print('Group 0 mean recall =', mean_recall_0)
+    print('Group 1 mean recall =', mean_recall_1)
+    print('Group 2 mean recall =', mean_recall_2)
+    mean_f1_allgroups = (mean_f1_0 + mean_f1_1 + mean_f1_2) / 3
+    mean_precision_allgroups = (mean_precision_0 + mean_precision_1 + mean_precision_2) / 3
+    mean_recall_allgroups = (mean_recall_0 + mean_recall_1 + mean_recall_2) / 3
+    print('Average f1 for all groups = ', mean_f1_allgroups)
+    print('Average precision for all groups = ', mean_precision_allgroups)
+    print('Average recall for all groups = ', mean_recall_allgroups)
+    return mean_f1_allgroups, mean_precision_allgroups, mean_recall_allgroups
